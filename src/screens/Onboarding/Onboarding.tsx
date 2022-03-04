@@ -5,8 +5,12 @@ import { styles } from "./Onboarding.styles";
 import customTheme from "../../components/customTheme";
 import OnboardingBg from "../../assets/img/bg.png";
 import LogoOnboarding from "../../assets/img/logo.png";
+import { StackScreenProps } from "@react-navigation/stack";
+import { RootStackParamList } from "../../navigators/AppNavigator";
 
-const Onboarding: FC = () => {
+type Props = StackScreenProps<RootStackParamList, "Onboarding">;
+
+const Onboarding = ({ navigation }: Props) => {
   const { width, height } = Dimensions.get("screen");
 
   return (
@@ -45,6 +49,7 @@ const Onboarding: FC = () => {
               style={styles.button}
               color={customTheme.COLORS.SECONDARY}
               textStyle={{ color: customTheme.COLORS.BLACK }}
+              onPress={() => navigation.navigate("Home")}
             >
               Get Started
             </Button>
