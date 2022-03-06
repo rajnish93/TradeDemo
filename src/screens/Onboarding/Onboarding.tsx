@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { Dimensions, Image, ImageBackground, StatusBar } from "react-native";
 import { Block, Button, Text } from "galio-framework";
 import { styles } from "./Onboarding.styles";
