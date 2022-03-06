@@ -34,11 +34,14 @@ export const AppNavigator = () => {
           name="Home"
           component={Home}
           options={{
-            headerTransparent: true,
             headerTitleAlign: "center",
             headerTitleStyle: {
               fontWeight: "bold",
               color: customTheme.COLORS.BLACK,
+            },
+            headerTintColor: customTheme.COLORS.TWITTER,
+            headerStyle: {
+              backgroundColor: customTheme.COLORS.THEME,
             },
           }}
         />
