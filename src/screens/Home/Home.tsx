@@ -1,24 +1,54 @@
-import React, { FC } from "react";
-import { StatusBar } from "react-native";
-import { Block, Text } from "galio-framework";
+import React, { FC, useEffect, useState } from "react";
+import { FlatList, RefreshControl, View } from "react-native";
 import { styles } from "./Home.styles";
+import { getMarketData } from "../../service";
+import CoinItem from "./CoinItem";
+import customTheme from "../../components/customTheme";
 
 const Home: FC = () => {
+  const [coins, setCoins] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  const fetchCoins = async (pageNumber: number) => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    const coinsData = await getMarketData(pageNumber);
+    setCoins((existingCoins) => [...existingCoins, ...coinsData]);
+    setLoading(false);
+  };
+
+  const refetchCoins = async () => {
+    if (loading) {
+      return;
+    }
+    setLoading(true);
+    const coinsData = await getMarketData();
+    setCoins(coinsData);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchCoins(1);
+  }, []);
+
   return (
-    <Block flex style={styles.container}>
-      <StatusBar hidden />
-      <Block flex space="between" style={styles.padded}>
-        <Block flex space="around" style={{ zIndex: 2 }}>
-          <Block style={styles.title}>
-            <Block>
-              <Text color="white" size={28}>
-                Welcome!
-              </Text>
-            </Block>
-          </Block>
-        </Block>
-      </Block>
-    </Block>
+    <View style={styles.container}>
+      <FlatList
+        style={styles.padded}
+        data={coins}
+        renderItem={({ item }) => <CoinItem marketCoin={item} />}
+        onEndReached={() => fetchCoins(coins.length / 50 + 1)}
+        refreshControl={
+          <RefreshControl
+            refreshing={loading}
+            tintColor={customTheme.COLORS.BLACK}
+            onRefresh={refetchCoins}
+          />
+        }
+      />
+    </View>
   );
 };
 
