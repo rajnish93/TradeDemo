@@ -5,6 +5,7 @@ import Onboarding from "../screens/Onboarding/Onboarding";
 import customTheme from "../components/customTheme";
 import Home from "../screens/Home/Home";
 import Dashboard from "../screens/Dashboard/Dashboard";
+import { StatusBar } from "react-native";
 
 export type RootStackParamList = {
   Onboarding: undefined;
@@ -17,6 +18,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const AppNavigator = () => {
   return (
     <NavigationContainer>
+      <StatusBar translucent backgroundColor="transparent" />
       <Stack.Navigator
         screenOptions={{
           headerRightContainerStyle: {},

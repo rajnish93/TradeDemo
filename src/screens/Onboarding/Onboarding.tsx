@@ -15,7 +15,6 @@ const Onboarding = ({ navigation }: Props) => {
 
   return (
     <Block flex style={styles.container}>
-      <StatusBar hidden />
       <Block flex center>
         <ImageBackground
           source={OnboardingBg}
