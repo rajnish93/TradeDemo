@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     backgroundColor: customTheme.COLORS.WHITE,
   },
   padded: {
-    paddingTop: customTheme.SIZES.BASE * 4,
+    paddingTop: customTheme.SIZES.BASE * 2,
   },
   title: {
     marginTop: "0%",
