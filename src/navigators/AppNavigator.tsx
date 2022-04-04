@@ -6,11 +6,13 @@ import customTheme from "../components/customTheme";
 import Home from "../screens/Home/Home";
 import Dashboard from "../screens/Dashboard/Dashboard";
 import { StatusBar } from "react-native";
+import BottomTabNavigator from "./BottomTabNavigator";
 
 export type RootStackParamList = {
   Onboarding: undefined;
   Home: undefined;
   Dashboard: undefined;
+  Root: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -20,11 +22,17 @@ export const AppNavigator = () => {
     <NavigationContainer>
       <StatusBar translucent backgroundColor="transparent" />
       <Stack.Navigator
+        // initialRouteName="Root"
         screenOptions={{
           headerRightContainerStyle: {},
           headerLeftContainerStyle: {},
         }}
       >
+        {/* <Stack.Screen
+          name="Root"
+          component={BottomTabNavigator}
+          options={{ headerShown: true }}
+        /> */}
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
@@ -32,7 +40,7 @@ export const AppNavigator = () => {
         />
         <Stack.Screen
           name="Home"
-          component={Home}
+          component={BottomTabNavigator}
           options={{
             headerTitleAlign: "center",
             headerTitleStyle: {
@@ -45,7 +53,7 @@ export const AppNavigator = () => {
             },
           }}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Dashboard"
           component={Dashboard}
           options={{
@@ -56,7 +64,7 @@ export const AppNavigator = () => {
               color: customTheme.COLORS.BLACK,
             },
           }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
